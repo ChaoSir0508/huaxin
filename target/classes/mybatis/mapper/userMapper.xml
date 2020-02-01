@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.huaxin.dao.UserMapper">
+
+    <resultMap id="UserMap" type="com.chao.huaxin.pojo.User">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="telephone" property="telephone"/>
+        <result column="account" property="account"/>
+        <result column="status" property="status"/>
+        <result column="deled" property="deled"/>
+    </resultMap>
+    <select id="getUsers" resultMap="UserMap">
+        SELECT * FROM user WHERE deled = '正常' ORDER By id DESC ;
+    </select>
+    <!--    ==============================================================-->
+    <select id="listUser" resultMap="UserMap">
+        SELECT * FROM user ORDER By id DESC ;
+    </select>
+    <update id="editUser" parameterType="user">
+        UPDATE user SET name = #{name},site=#{site},time=#{time},telephone=#{telephone},status=#{status},deled=#{deled} WHERE id = #{id}
+    </update>
+    <!--    ==============================================================-->
+    <select id="gerUserById" parameterType="int" resultMap="UserMap">
+        SELECT * FROM user  WHERE id = #{id};
+    </select>
+    <select id="getUserByAccount" parameterType="string" resultMap="UserMap">
+        SELECT * FROM user  WHERE account = #{account};
+    </select>
+
+    <insert id="saveUser" parameterType="user">
+        INSERT INTO user(id,name,site,time,telephone,account,status,deled) VALUES(null,#{name},#{site},#{time},#{telephone},#{account},'待审核','正常')
+    </insert>
+
+    <update id="updateUser" parameterType="user">
+        UPDATE user SET name = #{name},site=#{site},time=#{time},telephone=#{telephone} WHERE id = #{id}
+    </update>
+
+    <update id="updateStatus" parameterType="string">
+        UPDATE user SET  status = '已缴费' WHERE account=#{account}
+    </update>
+    <select id="getAccount" parameterType="string" resultMap="UserMap">
+        SELECT * FROM user WHERE account = #{account}
+    </select>
+
+    <update id="setStatus" parameterType="string">
+        UPDATE user SET status = 1 WHERE account =#{account}
+    </update>
+
+</mapper>

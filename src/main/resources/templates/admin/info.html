@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包车报名后台管理</title>
+</head>
+<link rel="stylesheet" th:href="@{../static/css/layui.css}">
+<body>
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item layui-this"><a href="">数据录入</a></li>
+    <li class="layui-nav-item"><a href="/admin/getUsers">数据列表</a></li>
+
+</ul>
+
+<blockquote class="layui-elem-quote layui-quote-nm">
+
+    <div class="layui-input-inline">
+        <textarea id="account" cols="33" placeholder="输入32位单号，多条换行分割" class="layui-textarea"></textarea>
+    </div>
+    <div style="display: block">
+        <a id="accountBtn" style="margin-top: 10px;margin-left: 180px" class="layui-btn layui-btn-sm">录入</a>
+        <a href="/admin/accounts" style="margin-top: 10px;margin-left: 20px" class="layui-btn layui-btn-normal layui-btn-sm">查看</a>
+    </div>
+
+    <div style="margin-top: 10px">
+        <div class="layui-input-inline">
+            <textarea id="site" cols="33" placeholder="输入上下车地点，多条换行分割" class="layui-textarea"></textarea>
+        </div>
+        <div style="display: block">
+            <a id="siteBtn" style="margin-top: 10px;margin-left: 180px" class="layui-btn layui-btn-sm">录入</a>
+            <a href="/admin/sites" style="margin-top: 10px;margin-left: 20px" class="layui-btn layui-btn-normal layui-btn-sm">查看</a>
+        </div>
+    </div>
+
+    <div style="margin-top: 10px">
+        <div class="layui-input-inline">
+            <textarea id="time" cols="33" placeholder="输入日期，格式：5-8,12-12，多条换行分割" class="layui-textarea"></textarea>
+        </div>
+        <div style="display: block">
+            <a id="timeBtn" style="margin-top: 10px;margin-left: 180px" class="layui-btn layui-btn-sm">录入</a>
+            <a href="/admin/times" style="margin-top: 10px;margin-left: 20px" class="layui-btn layui-btn-normal layui-btn-sm">查看</a>
+        </div>
+    </div>
+
+
+</blockquote>
+<!--</div>-->
+<script th:src="@{../static/layui.all.js}"></script>
+<script th:src="@{../static/jquery-2.1.1.min.js}"></script>
+<script>
+    $("#accountBtn").click(function () {
+        var account = $("#account").val();
+        if (account == '') {
+            layer.msg('单号不能为空', {time: 1300, anim: 6});
+            return;
+        }
+        $.post("/admin/addAccount", {"accounts": account}, function (data) {
+            if (data.status == 0) {
+                layer.alert('格式错误，多条回车分割', {icon: 5});
+            } else if (data.status == 1) {
+                layer.alert('录入成功！共录入：' + data.message + '条', {icon: 6}, function () {
+                    window.location.href = "/admin/accounts"
+                });
+            }
+        }, 'json');
+    });
+
+    $("#siteBtn").click(function () {
+        var sites = $("#site").val();
+        if (sites == '') {
+            layer.msg('地点不能为空', {time: 1300, anim: 6});
+            return;
+        }
+        $.post("/admin/addSite", {"sites": sites}, function (data) {
+            if (data.status == 0) {
+                layer.alert('格式错误，多条回车分割', {icon: 5});
+            } else if (data.status == 1) {
+                layer.alert('添加成功！', {icon: 6}, function () {
+                    window.location.href = "/admin/sites"
+                });
+            }
+        }, 'json');
+    });
+
+    $("#timeBtn").click(function () {
+        var time = $("#time").val();
+        if (time == '') {
+            layer.msg('日期不能为空', {time: 1300, anim: 6});
+            return;
+        }
+        $.post("/admin/addTime", {"time": time}, function (data) {
+            if (data.status == 0) {
+                layer.alert('格式错误，多条回车分割', {icon: 5});
+            } else if (data.status == 1) {
+                layer.alert('添加成功！', {icon: 6}, function () {
+                    window.location.href = "/admin/times"
+                });
+            }
+        }, 'json');
+    });
+</script>
+</body>
+</html>

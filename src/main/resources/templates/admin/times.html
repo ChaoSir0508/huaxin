@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包车报名后台管理</title>
+</head>
+<link rel="stylesheet" th:href="@{../static/css/layui.css}">
+<body>
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item "><a href="/admin/info">数据录入</a></li>
+    <li class="layui-nav-item layui-this"><a>日期管理</a></li>
+
+</ul>
+
+<blockquote class="layui-elem-quote layui-quote-nm">
+
+    <table class="layui-table layui-anim layui-anim-up">
+        <thead>
+        <th>日期</th>
+        <th>状态</th>
+        <th>操作</th>
+        </thead>
+        <tr th:each="time:${times}">
+            <td>[[${time.time}]]</td>
+            <td>[[${time.status}]]</td>
+            <td><a th:if="${time.status=='禁用'}" th:href="@{/admin/editTime(id=${time.id},status='enabled')}"
+                               class="layui-btn layui-btn-sm">启用</a>
+                <a th:if="${time.status=='启用'}" th:href="@{/admin/editTime(id=${time.id},status='disabled')}" class="layui-btn layui-btn-warm layui-btn-sm">停用</a>
+                <a th:href="@{/admin/editTime(id=${time.id},status='del')}" class="layui-btn layui-btn-danger layui-btn-sm">删除</a>
+            </td>
+        </tr>
+
+    </table>
+
+</blockquote>
+<!--</div>-->
+<script th:src="@{../static/layui.all.js}"></script>
+<script th:src="@{../static/jquery-2.1.1.min.js}"></script>
+</body>
+</html>

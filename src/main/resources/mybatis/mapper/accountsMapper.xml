@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.huaxin.dao.AccountsMapper">
+
+    <resultMap id="accountsMap" type="com.chao.huaxin.pojo.Accounts">
+        <result column="id" property="id"/>
+        <result column="account" property="account"/>
+        <result column="user" property="user"/>
+    </resultMap>
+
+    <select id="getAccounts" resultMap="accountsMap">
+        SELECT * FROM accounts ORDER BY id DESC
+    </select>
+    <select id="getAccountsCount" resultMap="accountsMap">
+        SELECT * FROM accounts WHERE user != '无'
+    </select>
+
+    <select id="getAccountByAccount" parameterType="string" resultMap="accountsMap">
+        SELECT * FROM accounts WHERE account=#{account}
+    </select>
+
+    <insert id="saveAccount" parameterType="accounts">
+        INSERT INTO accounts(id,account,user) VALUES (null ,#{account},#{user})
+    </insert>
+
+    <update id="updateAccount" parameterType="accounts">
+        UPDATE accounts SET account= #{account},user = #{user} WHERE  id = #{id}
+    </update>
+
+</mapper>

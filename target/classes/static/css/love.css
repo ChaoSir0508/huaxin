@@ -1,0 +1,76 @@
+/**
+  * heart标签的样式，一个红色的正方形，
+  * 将最终图像旋转45度，并置于缩小一半、半透明状态，
+  * 设置无限的动效
+  * 单次动效时间3s
+  */
+heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    transform: rotate(45deg) scale(.5);
+    opacity: .5;
+    animation-name: scale, opacity;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+/**
+ * 用伪类在heart之前画个圆并左移十像素
+ */
+heart::before {
+    position: absolute;
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    border-radius: 50%;
+    transform: translateX(-10px);
+}
+
+/**
+ *用伪类在heart之后画个圆并上移十像素
+ */
+
+heart::after {
+    position: absolute;
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    border-radius: 50%;
+    transform: translateY(-10px);
+}
+
+/**
+ * 跳动动效
+ */
+@keyframes scale {
+
+    25%,
+    75% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    50%,
+    100% {
+        transform: rotate(45deg) scale(.5);
+    }
+}
+
+/**
+ * 改变透明度
+ */
+@keyframes opacity {
+
+    25%,
+    75% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: .5;
+    }
+}

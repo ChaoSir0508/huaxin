@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包车报名后台管理</title>
+</head>
+<link rel="stylesheet" th:href="@{../static/css/layui.css}">
+<body>
+<div class="layui-container" style="padding-top: 30px">
+    <fieldset class="layui-elem-field  layui-anim layui-anim-up">
+        <legend style="color:green;padding-bottom: 20px"><h3>包车报名后台管理</h3></legend>
+        <div class="layui-field-box">
+            <form class="layui-form" action="#">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账号：</label>
+                    <div class="layui-input-block">
+                        <input id="name" class="layui-input" type="text"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码：</label>
+                    <div class="layui-input-block">
+                        <input id="password" class="layui-input" type="password"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <a id="sub" class="layui-btn">登录</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+</div>
+
+<script th:src="@{../static/jquery-2.1.1.min.js}"></script>
+<script th:src="@{../static/layui.all.js}"></script>
+<script>
+    $("#sub").click(function () {
+        var name = $("#name").val();
+        var password = $("#password").val();
+        if (name == "" || name.length != 6 || password == "" || password.length != 6) {
+            layer.msg("输入格式错误！");
+            return;
+        }
+        $.post("/admin/login", {"name": name, "password": password}, function (data) {
+            if (data.status == 0) {
+                //登录失败
+                layer.alert('账号或密码错误！', {icon: 5});
+            } else if (data.status == 1) {
+                //登录成功
+                window.location.href = "/admin/info"
+            } else {
+                //错误
+                layer.alert('系统错误！', {icon: 5});
+            }
+        })
+    });
+</script>
+</body>
+</html>

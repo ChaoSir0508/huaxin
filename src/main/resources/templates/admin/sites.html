@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包车报名后台管理</title>
+</head>
+<link rel="stylesheet" th:href="@{../static/css/layui.css}">
+<body>
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item "><a href="/admin/info">数据录入</a></li>
+    <li class="layui-nav-item layui-this"><a>地点管理</a></li>
+
+</ul>
+
+<blockquote class="layui-elem-quote layui-quote-nm">
+
+    <table class="layui-table layui-anim layui-anim-up">
+        <thead>
+        <th>地点</th>
+        <th>状态</th>
+        <th>操作</th>
+        </thead>
+        <tr th:each="site:${sites}">
+            <td>[[${site.site}]]</td>
+            <td>[[${site.deled}]]</td>
+            <td><a th:if="${site.deled=='禁用'}" th:href="@{/admin/editSite(id=${site.id},status='enabled')}"
+                               class="layui-btn layui-btn-sm">启用</a>
+                <a th:if="${site.deled=='启用'}" th:href="@{/admin/editSite(id=${site.id},status='disabled')}" class="layui-btn layui-btn-warm layui-btn-sm">停用</a>
+                <a th:href="@{/admin/editSite(id=${site.id},status='del')}" class="layui-btn layui-btn-danger layui-btn-sm">删除</a>
+            </td>
+        </tr>
+
+    </table>
+
+</blockquote>
+<!--</div>-->
+<script th:src="@{../static/layui.all.js}"></script>
+<script th:src="@{../static/jquery-2.1.1.min.js}"></script>
+</body>
+</html>

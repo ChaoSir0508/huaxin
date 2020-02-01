@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.huaxin.dao.SitesMapper">
+
+    <resultMap id="sitesMap" type="com.chao.huaxin.pojo.Sites">
+        <result column="id" property="id"/>
+        <result column="site" property="site"/>
+        <result column="deled" property="deled"/>
+    </resultMap>
+
+    <select id="getSites" resultMap="sitesMap">
+        SELECT * FROM sites WHERE deled = '启用' ORDER BY id DESC
+    </select>
+    <select id="getSitesAll" resultMap="sitesMap">
+        SELECT * FROM sites ORDER BY id DESC
+    </select>
+
+    <insert id="saveSites" parameterType="string">
+        INSERT INTO sites (id,site,deled) VALUES (null ,#{site},'启用')
+    </insert>
+
+    <update id="enabledSite" parameterType="int">
+        UPDATE sites SET deled = '启用' WHERE id = #{id}
+    </update>
+
+    <update id="disabledSite" parameterType="int">
+        UPDATE sites SET deled = '禁用' WHERE id = #{id}
+    </update>
+
+    <delete id="deleteSite" parameterType="int">
+        DELETE FROM sites WHERE id = #{id}
+    </delete>
+
+</mapper>

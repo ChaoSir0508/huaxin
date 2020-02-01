@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关系系统</title>
+</head>
+<link rel="stylesheet" href="../static/css/layui.css">
+<link rel="stylesheet" href="../static/css/love.css">
+<body>
+<div id="main" class="layui-container">
+    <div id="love" style="height: 500px;weight: 100px"></div>
+    <!--<fieldset  class="layui-elem-field" style="margin-top: 20px">
+        <legend><h3>关于包车报名系统</h3></legend>
+            <div  class="layui-field-box" style="margin-top: 20px">
+                <ul class="layui-timeline">
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <h3 class="layui-timeline-title">项目名</h3>
+                            <p>
+                                包车报名系统
+                            </p>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <h3 class="layui-timeline-title">作者</h3>
+                            <p>
+                                王超
+                            </p>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <h3 class="layui-timeline-title">选用技术</h3>
+                            <p>
+                                Layui + SpringBoot + Mybatis + MySQL + 华为云
+                            </p>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">开发周期</div>
+                            <p>
+                                2020-1-26 ~ 20201-29
+                            </p>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">寄语</div>
+                            <p>
+                                由于只由我一人负责开发，技术和其他方面的限制，目前只能做成这样了，后期根据需求逐渐完善该系统。有兴趣学编程的朋友，可以来联系我，一起学习。
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+    </fieldset>-->
+</div>
+<script src="../static/jquery-2.1.1.min.js"></script>
+<script src="../static/layui.all.js"></script>
+<script>
+    layer.alert('很高兴你能点进来！', {
+        icon: 6,
+        offset: ['240px', '50px']
+    });
+
+    //获取父容器
+    var mainObj = document.getElementById('main')
+    //获取文本容器
+    var textObj = document.getElementById('love')
+    //获取浏览器的高度
+    var innerWidth = document.body.clientWidth
+    var innerHeight = document.body.clientHeight
+
+    //计数器
+    var number = 1
+
+    /**
+     * 持续出心，直到数量为521，位置随机生成
+     */
+    var interval = setInterval(function () {
+        var heart = document.createElement('heart')
+        heart.style.left = Math.floor(Math.random() * innerWidth) + 'px'
+        heart.style.top = Math.floor(Math.random() * innerHeight) + 'px'
+        mainObj.appendChild(heart)
+        number++
+        textObj.innerHTML = '<fieldset  class="layui-elem-field" style="margin-top: 20px">\n' +
+            '        <legend><h3>关于包车报名系统</h3></legend>\n' +
+            '            <div  class="layui-field-box" style="margin-top: 20px">\n' +
+            '                <ul class="layui-timeline">\n' +
+            '                    <li class="layui-timeline-item">\n' +
+            '                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+            '                        <div class="layui-timeline-content layui-text">\n' +
+            '                            <h3 class="layui-timeline-title">项目名</h3>\n' +
+            '                            <p>\n' +
+            '                                包车报名系统\n' +
+            '                            </p>\n' +
+            '                        </div>\n' +
+            '                    </li>\n' +
+            '                    <li class="layui-timeline-item">\n' +
+            '                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+            '                        <div class="layui-timeline-content layui-text">\n' +
+            '                            <h3 class="layui-timeline-title">作者</h3>\n' +
+            '                            <p>\n' +
+            '                                王超\n' +
+            '                            </p>\n' +
+            '                        </div>\n' +
+            '                    </li>\n' +
+            '                    <li class="layui-timeline-item">\n' +
+            '                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+            '                        <div class="layui-timeline-content layui-text">\n' +
+            '                            <h3 class="layui-timeline-title">选用技术</h3>\n' +
+            '                            <p>\n' +
+            '                                Layui + SpringBoot + Mybatis + MySQL + 华为云\n' +
+            '                            </p>\n' +
+            '                        </div>\n' +
+            '                    </li>\n' +
+            '                    <li class="layui-timeline-item">\n' +
+            '                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+            '                        <div class="layui-timeline-content layui-text">\n' +
+            '                            <div class="layui-timeline-title">开发周期</div>\n' +
+            '                            <p>\n' +
+            '                                2020-1-26 ~ 2020-1-29\n' +
+            '                            </p>\n' +
+            '                        </div>\n' +
+            '                    </li>\n' +
+            '                    <li class="layui-timeline-item">\n' +
+            '                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+            '                        <div class="layui-timeline-content layui-text">\n' +
+            '                            <div class="layui-timeline-title">寄语</div>\n' +
+            '                            <p>\n' +
+            '                                由于只由我一人负责开发，技术和其他方面的限制，目前只能做成这样了，后期根据需求逐渐完善该系统。有兴趣学编程的朋友，可以来联系我，一起学习。最后感谢对该系统测试的朋友们！\n' +
+            '                            </p>\n' +
+            '                        </div>\n' +
+            '                    </li>\n' +
+            '                </ul>\n' +
+            '            </div>\n' +
+            '    </fieldset>'
+        //当心的数量达到521时结束
+        if (number >= 15) {
+            clearInterval(interval)
+        }
+    }, 200)
+
+</script>
+</body>
+</html>

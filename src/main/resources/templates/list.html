@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据列表</title>
+</head>
+<link rel="stylesheet" th:href="@{../static/css/layui.css}">
+<body>
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item "><a href="/">包车报名</a></li>
+    <li class="layui-nav-item layui-this"><a>数据列表</a></li>
+    <span class=""><font
+            style="font-size: 13px;color: #888888;margin-left: 40px;padding-top: 70px">报名总数：[[${count}]]</font></span>
+</ul>
+
+<blockquote class="layui-elem-quote layui-quote-nm">
+    <table class="layui-table layui-anim layui-anim-up">
+        <thead>
+        <th>姓名</th>
+        <th>地点</th>
+        <th>电话号码</th>
+        <th>日期</th>
+        </thead>
+        <tr th:each="user:${users}">
+            <td><span style="font-size: 13px">[[${user.name}]]</span></td>
+            <td><span style="font-size: 13px">[[${user.site}]]</span></td>
+            <td><span style="font-size: 13px">[[${user.telephone}]]</span></td>
+            <td><span style="font-size: 13px">[[${user.time}]]</span></td>
+        </tr>
+
+    </table>
+</blockquote>
+<script th:src="@{../static/jquery-2.1.1.min.js}"></script>
+<script th:src="@{../static/layui.all.js}"></script>
+</body>
+</html>

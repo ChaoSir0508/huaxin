@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.huaxin.dao.TimesMapper">
+
+    <resultMap id="timesMap" type="com.chao.huaxin.pojo.Times">
+        <result column="id" property="id"/>
+        <result column="time" property="time"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="getTimes" resultMap="timesMap">
+        SELECT * FROM times WHERE status = '启用' ORDER BY id DESC
+    </select>
+    <select id="getTimesAll" resultMap="timesMap">
+       SELECT * FROM times ORDER BY id DESC
+    </select>
+
+    <insert id="saveTimes" parameterType="string">
+        INSERT INTO times (id,time,status) VALUES (null ,#{time},'启用')
+    </insert>
+
+    <update id="enabledTimes" parameterType="int">
+        UPDATE times SET status = '启用' WHERE id = #{id}
+    </update>
+
+    <update id="disabledTimes" parameterType="int">
+        UPDATE times SET status = '禁用' WHERE id = #{id}
+    </update>
+
+    <delete id="deleteTimes" parameterType="int">
+        DELETE FROM times WHERE id = #{id}
+    </delete>
+
+</mapper>

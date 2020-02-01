@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包车报名后台管理</title>
+</head>
+<link rel="stylesheet" th:href="@{../static/css/layui.css}">
+<body>
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item "><a href="/admin/info">数据录入</a></li>
+    <li class="layui-nav-item layui-this"><a>账单管理</a></li>
+    <span class=""><font
+            style="font-size: 13px;color: #888888;margin-left: 40px;padding-top: 70px">使用总数：[[${count}]]</font></span>
+</ul>
+
+<blockquote class="layui-elem-quote layui-quote-nm">
+
+    <table class="layui-table layui-anim layui-anim-up">
+        <thead>
+        <th>单号</th>
+        <th>用户</th>
+        </thead>
+        <tr th:each="account:${accounts}">
+            <td><span style="font-size: 12px">[[${account.account}]]</span></td>
+            <td><span style="font-size: 13px">[[${account.user}]]</span></td>
+        </tr>
+
+    </table>
+
+</blockquote>
+<!--</div>-->
+<script th:src="@{../static/layui.all.js}"></script>
+<script th:src="@{../static/jquery-2.1.1.min.js}"></script>
+</body>
+</html>

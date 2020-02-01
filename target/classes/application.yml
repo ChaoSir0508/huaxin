@@ -1,0 +1,19 @@
+spring:
+  #数据库设置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/huaxin?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    username: root
+    password: chaosir11..
+    type: com.alibaba.druid.pool.DruidDataSource
+
+#项目设置
+server:
+  port: 80
+#  servlet:
+#    context-path: /huaxin
+#mybatis设置
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.chao.huaxin.pojo
+  config-location: classpath:mybatis/mybatis-config.xml
